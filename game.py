@@ -1,3 +1,4 @@
+
 gameBoard = {'UL': '', 'UM': '', 'UR': '', 'ML': '', 'MM': '', 'MR': '', 'LL': '', 'LM': '', 'LR': ''}
 
 
@@ -45,13 +46,13 @@ def check_win_conditions():
                     win_flag = True
                     break
     #check diagonals
-    #if not win_flag:
-    #    if (gameBoard['UL'] == gameBoard['MM'] == gameBoard['LR']) and ((gameBoard['UL'] == gameBoard['MM'] == gameBoard['LR']) != ''):
-    #        print(f'{gameBoard["UL"]} You won!')
-    #        win_flag = True
-     #   if (gameBoard['UR'] == gameBoard['MM'] == gameBoard['LL']) and ((gameBoard['UR'] == gameBoard['MM'] == gameBoard['LL']) != ''):
-     #       print(f'{gameBoard["UR"]} You won!')
-     #       win_flag = True
+    if not win_flag:
+        if (gameBoard['UL'] == gameBoard['MM'] == gameBoard['LR']) and gameBoard['UL'] != '' and gameBoard['MM'] != '' and gameBoard['LR'] != '':
+            print(f'{gameBoard["UL"]} You won!')
+            win_flag = True
+        if (gameBoard['UR'] == gameBoard['MM'] == gameBoard['LL']) and gameBoard['UR'] != '' and gameBoard['MM'] != '' and gameBoard['LL'] != '':
+            print(f'{gameBoard["UR"]} You won!')
+            win_flag = True
 
     return win_flag
 
