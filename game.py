@@ -6,6 +6,7 @@ class Game:
         self.__f_player_pawn = fpawn
         self.__s_player_pawn = spawn
         self.__move_counter = 0
+        self.__max_number_of_moves = 9
         print(f'Selected {self.__game_mode} mode first player pawn is {self.__f_player_pawn}')
 
     def set_game_mode(self, gamemode):
@@ -52,7 +53,6 @@ class Game:
 
 
     def check_win_conditions(self):
-        if self.__move_counter <= 9:# DEBUG AND REPEIR THAT NUMBER SCHOULD BE 9-number of possibe moves
             win_flag = False
             keyfirstletterindex = 0
             keysecondletterindex = 1
@@ -70,7 +70,7 @@ class Game:
                     if chflag == 3:
                         print(f"{value} You won!")
                         win_flag = True
-                        break
+                        return win_flag
             #chcek columns
             if not win_flag:
                 for k, v in self.__gameBoard.items():
@@ -86,20 +86,23 @@ class Game:
                         if chflag == 3:
                             print(f"{value} You won!")
                             win_flag = True
-                            break
+                            return win_flag
             #check diagonals
             if not win_flag:
                 if (self.__gameBoard['UL'] == self.__gameBoard['MM'] == self.__gameBoard['LR']) and self.__gameBoard['UL'] != '' and self.__gameBoard['MM'] != '' and self.__gameBoard['LR'] != '':
                     print(f'{self.__gameBoard["UL"]} You won!')
                     win_flag = True
+                    return win_flag
                 if (self.__gameBoard['UR'] == self.__gameBoard['MM'] == self.__gameBoard['LL']) and self.__gameBoard['UR'] != '' and self.__gameBoard['MM'] != '' and self.__gameBoard['LL'] != '':
                     print(f'{self.__gameBoard["UR"]} You won!')
                     win_flag = True
-
+                    return win_flag
+            #check if end of moves
+            if self.__move_counter == self.__max_number_of_moves:
+                print('DRAW!')
+                return True
             return win_flag
-        else:
-            print('DRAW!')
-            return True
+
     def printboard(self):
         print(f'''
     {self.__gameBoard['UL']}|{self.__gameBoard['UM']}|{self.__gameBoard['UR']}
