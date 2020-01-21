@@ -1,3 +1,5 @@
+import random
+
 class Game:
 
     def __init__(self, gamemode=None, fpawn=None, spawn=None):
@@ -23,6 +25,12 @@ class Game:
 
     def get_game_board_field(self, index):
         return self.__gameBoard[index]
+    def bot_moves(self):
+        while True:
+            place = random.choice(list(self.__gameBoard))
+            if self.__check_if_field_available(place):
+                self.write_to_board(place)
+                break
 
     def __check_if_field_available(self, index):
         check_flag = False

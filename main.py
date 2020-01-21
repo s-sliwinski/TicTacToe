@@ -20,24 +20,42 @@ if __name__ == "__main__":
                     current_game = Game(gamemode, 'O', 'X')
                     break
                 else:
-                    print(f'Wrong command! You typed: {gamemode}')
+                    print(f'Wrong command! You typed: {pawn}')
             print('Here is list of commands')
             Game.printlist()
             init_flag = 1
         else:
-            #game loop
-            while True:
-                field = input('Please select the field and type field name: ')
-                if current_game.write_to_board(field):
-                    current_game.printboard()
-                    if current_game.check_win_conditions():
-                        while True:
-                            command = input('What you want to do? "EXIT" or "RESET": ')
-                            if command == "RESET":
-                                init_flag = 0
-                                break
-                            elif command == "EXIT":
-                                sys.exit()
-                            else:
-                                print(f'Wrong command! You typed: {command}')
-                        break
+            #game loops
+            if current_game.get_game_mode() == '2players':
+                while True:
+                    field = input('Please select the field and type field name: ')
+                    if current_game.write_to_board(field):
+                        current_game.printboard()
+                        if current_game.check_win_conditions():
+                            while True:
+                                command = input('What you want to do? "EXIT" or "RESET": ')
+                                if command == "RESET":
+                                    init_flag = 0
+                                    break
+                                elif command == "EXIT":
+                                    sys.exit()
+                                else:
+                                    print(f'Wrong command! You typed: {command}')
+                            break
+            elif current_game.get_game_mode() == 'AI':
+                while True:
+                    field = input('Please select the field and type field name: ')
+                    if current_game.write_to_board(field):
+                        current_game.bot_moves()
+                        current_game.printboard()
+                        if current_game.check_win_conditions():
+                            while True:
+                                command = input('What you want to do? "EXIT" or "RESET": ')
+                                if command == "RESET":
+                                    init_flag = 0
+                                    break
+                                elif command == "EXIT":
+                                    sys.exit()
+                                else:
+                                    print(f'Wrong command! You typed: {command}')
+                            break
