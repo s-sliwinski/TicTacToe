@@ -23,11 +23,15 @@ class Game:
     def get_game_mode(self):
         return self.__game_mode
 
+    def get_move_counter(self):
+        return self.__move_counter
+
     def get_game_board(self):
         return self.__gameBoard
 
-    def get_move_counter(self):
-        return self.__move_counter
+    def get_game_board_keys(self):
+        lst = list(self.__gameBoard.keys())
+        return lst
 
     def get_game_board_field(self, index):
         return self.__gameBoard[index]
@@ -69,13 +73,8 @@ class Game:
 
             return write_flag
 
-
-
-
     def check_win_conditions(self):
             win_flag = False
-            # keyfirstletterindex = 0
-            # keysecondletterindex = 1
             #check rows
             if (self.__gameBoard['UL'][0] == self.__gameBoard['UM'][0] == self.__gameBoard['UR'][0]) and self.__gameBoard['UL'][0] != '':
                 print(f"{self.__gameBoard['UL']} You won!")
@@ -89,21 +88,6 @@ class Game:
                 print(f"{self.__gameBoard['LL']} You won!")
                 win_flag = True
                 return win_flag
-
-            # for k, v in self.__gameBoard.items():
-            #     if v == '':
-            #         continue
-            #     else:
-            #         key = k[keyfirstletterindex]
-            #         value = v
-            #         chflag = 0
-            #         for K, V in self.__gameBoard.items():
-            #             if K[keyfirstletterindex] == key and V == value:
-            #                 chflag += 1
-            #         if chflag == 3:
-            #             print(f"{value} You won!")
-            #             win_flag = True
-            #             return win_flag
             #chcek columns
             elif (self.__gameBoard['UL'][0] == self.__gameBoard['ML'][0] == self.__gameBoard['LL'][0]) and self.__gameBoard['UL'][0] != '':
                 print(f"{self.__gameBoard['UL']} You won!")
@@ -117,29 +101,13 @@ class Game:
                 print(f"{self.__gameBoard['UR']} You won!")
                 win_flag = True
                 return win_flag
-
-            # if not win_flag:
-            #     for k, v in self.__gameBoard.items():
-            #         if v == '':
-            #             continue
-            #         else:
-            #             key = k[keysecondletterindex]
-            #             value = v
-            #             chflag = 0
-            #             for K, V in self.__gameBoard.items():
-            #                 if K[keysecondletterindex] == key and V == value:
-            #                     chflag += 1
-            #             if chflag == 3:
-            #                 print(f"{value} You won!")
-            #                 win_flag = True
-            #                 return win_flag
             #check diagonals
             if not win_flag:
-                if (self.__gameBoard['UL'] == self.__gameBoard['MM'] == self.__gameBoard['LR']) and self.__gameBoard['UL'] != '' and self.__gameBoard['MM'] != '' and self.__gameBoard['LR'] != '':
+                if (self.__gameBoard['UL'][0] == self.__gameBoard['MM'][0] == self.__gameBoard['LR'][0]) and self.__gameBoard['UL'][0] != '':
                     print(f'{self.__gameBoard["UL"]} You won!')
                     win_flag = True
                     return win_flag
-                if (self.__gameBoard['UR'] == self.__gameBoard['MM'] == self.__gameBoard['LL']) and self.__gameBoard['UR'] != '' and self.__gameBoard['MM'] != '' and self.__gameBoard['LL'] != '':
+                if (self.__gameBoard['UR'][0] == self.__gameBoard['MM'][0] == self.__gameBoard['LL'][0]) and self.__gameBoard['UR'][0] != '':
                     print(f'{self.__gameBoard["UR"]} You won!')
                     win_flag = True
                     return win_flag
@@ -154,9 +122,6 @@ class Game:
     {self.__gameBoard['UL'][0]}|{self.__gameBoard['UM'][0]}|{self.__gameBoard['UR'][0]}
     {self.__gameBoard['ML'][0]}|{self.__gameBoard['MM'][0]}|{self.__gameBoard['MR'][0]}
     {self.__gameBoard['LL'][0]}|{self.__gameBoard['LM'][0]}|{self.__gameBoard['LR'][0]}''')
-
-
-
 
     @staticmethod
     def printlist():
